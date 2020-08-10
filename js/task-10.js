@@ -8,19 +8,14 @@ const getSortedUniqueSkills = users => {
       acc.push(...someUser.skills);
       return acc;
     }, [])
-    .sort();
-
-  const unique = arr => {
-    const uniqueArr = [];
-    arr.forEach(element => {
-      if (!uniqueArr.includes(element)) {
-        uniqueArr.push(element);
-      }
-    });
-    return uniqueArr;
-  };
-  return unique(sortArray);
+    .sort()
+    .filter(
+      (someSkillName, index, arr) => arr.indexOf(someSkillName) === index
+    );
+  return sortArray;
 };
 
+// фйильтрация на уникальность значений в массиве с помощю indexOf и filter ,Set, reduce https://webformyself.com/kak-proizvesti-udalenie-dublej-massiva-v-es6/ перевод
+//https://medium.com/dailyjs/how-to-remove-array-duplicates-in-es6-5daa8789641c  источник
 console.log(getSortedUniqueSkills(users));
 // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
